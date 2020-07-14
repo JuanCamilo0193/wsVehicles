@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BD_VEHICLESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TB_ClassVehicles">
+    <Key>
+      <PropertyRef Name="IdClassVehicle" />
+    </Key>
+    <Property Name="IdClassVehicle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassVehicle" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="TB_Countries">
+    <Key>
+      <PropertyRef Name="IdCountry" />
+    </Key>
+    <Property Name="IdCountry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="5" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="TB_Manufacturers">
+    <Key>
+      <PropertyRef Name="IdManufacturer" />
+    </Key>
+    <Property Name="IdManufacturer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="NameManufacturer" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="DateFoundation" Type="date" />
+    <Property Name="Logo" Type="image" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Types">
+    <Key>
+      <PropertyRef Name="IdType" />
+    </Key>
+    <Property Name="IdType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Vehicles">
+    <Key>
+      <PropertyRef Name="IdVehicle" />
+    </Key>
+    <Property Name="IdVehicle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassVehicleId" Type="int" />
+    <Property Name="ManufacturerId" Type="int" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="120" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="InProduction" Type="bit" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <Association Name="FK_TB_Manufacturers_TB_Countries">
+    <End Role="TB_Countries" Type="Self.TB_Countries" Multiplicity="1" />
+    <End Role="TB_Manufacturers" Type="Self.TB_Manufacturers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Countries">
+        <PropertyRef Name="IdCountry" />
+      </Principal>
+      <Dependent Role="TB_Manufacturers">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Vehicles_TB_ClassVehicles">
+    <End Role="TB_ClassVehicles" Type="Self.TB_ClassVehicles" Multiplicity="0..1" />
+    <End Role="TB_Vehicles" Type="Self.TB_Vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_ClassVehicles">
+        <PropertyRef Name="IdClassVehicle" />
+      </Principal>
+      <Dependent Role="TB_Vehicles">
+        <PropertyRef Name="ClassVehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Vehicles_TB_Manufacturers">
+    <End Role="TB_Manufacturers" Type="Self.TB_Manufacturers" Multiplicity="1" />
+    <End Role="TB_Vehicles" Type="Self.TB_Vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Manufacturers">
+        <PropertyRef Name="IdManufacturer" />
+      </Principal>
+      <Dependent Role="TB_Vehicles">
+        <PropertyRef Name="ManufacturerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Vehicles_TB_Types">
+    <End Role="TB_Types" Type="Self.TB_Types" Multiplicity="1" />
+    <End Role="TB_Vehicles" Type="Self.TB_Vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Types">
+        <PropertyRef Name="IdType" />
+      </Principal>
+      <Dependent Role="TB_Vehicles">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD_VEHICLESModelStoreContainer">
+    <EntitySet Name="TB_ClassVehicles" EntityType="Self.TB_ClassVehicles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Countries" EntityType="Self.TB_Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Manufacturers" EntityType="Self.TB_Manufacturers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Types" EntityType="Self.TB_Types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Vehicles" EntityType="Self.TB_Vehicles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TB_Manufacturers_TB_Countries" Association="Self.FK_TB_Manufacturers_TB_Countries">
+      <End Role="TB_Countries" EntitySet="TB_Countries" />
+      <End Role="TB_Manufacturers" EntitySet="TB_Manufacturers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Vehicles_TB_ClassVehicles" Association="Self.FK_TB_Vehicles_TB_ClassVehicles">
+      <End Role="TB_ClassVehicles" EntitySet="TB_ClassVehicles" />
+      <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Vehicles_TB_Manufacturers" Association="Self.FK_TB_Vehicles_TB_Manufacturers">
+      <End Role="TB_Manufacturers" EntitySet="TB_Manufacturers" />
+      <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Vehicles_TB_Types" Association="Self.FK_TB_Vehicles_TB_Types">
+      <End Role="TB_Types" EntitySet="TB_Types" />
+      <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

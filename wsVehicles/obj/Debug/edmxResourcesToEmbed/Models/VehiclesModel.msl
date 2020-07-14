@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BD_VEHICLESModelStoreContainer" CdmEntityContainer="BD_VEHICLESEntities">
+    <EntitySetMapping Name="TB_ClassVehicles">
+      <EntityTypeMapping TypeName="BD_VEHICLESModel.TB_ClassVehicles">
+        <MappingFragment StoreEntitySet="TB_ClassVehicles">
+          <ScalarProperty Name="IdClassVehicle" ColumnName="IdClassVehicle" />
+          <ScalarProperty Name="ClassVehicle" ColumnName="ClassVehicle" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Countries">
+      <EntityTypeMapping TypeName="BD_VEHICLESModel.TB_Countries">
+        <MappingFragment StoreEntitySet="TB_Countries">
+          <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Manufacturers">
+      <EntityTypeMapping TypeName="BD_VEHICLESModel.TB_Manufacturers">
+        <MappingFragment StoreEntitySet="TB_Manufacturers">
+          <ScalarProperty Name="IdManufacturer" ColumnName="IdManufacturer" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="NameManufacturer" ColumnName="NameManufacturer" />
+          <ScalarProperty Name="DateFoundation" ColumnName="DateFoundation" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Types">
+      <EntityTypeMapping TypeName="BD_VEHICLESModel.TB_Types">
+        <MappingFragment StoreEntitySet="TB_Types">
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Vehicles">
+      <EntityTypeMapping TypeName="BD_VEHICLESModel.TB_Vehicles">
+        <MappingFragment StoreEntitySet="TB_Vehicles">
+          <ScalarProperty Name="IdVehicle" ColumnName="IdVehicle" />
+          <ScalarProperty Name="ClassVehicleId" ColumnName="ClassVehicleId" />
+          <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="InProduction" ColumnName="InProduction" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
