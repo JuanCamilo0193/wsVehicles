@@ -44,14 +44,14 @@
     <EntitySetMapping Name="TB_Vehicles">
       <EntityTypeMapping TypeName="BD_VEHICLESModel.TB_Vehicles">
         <MappingFragment StoreEntitySet="TB_Vehicles">
-          <ScalarProperty Name="IdVehicle" ColumnName="IdVehicle" />
-          <ScalarProperty Name="ClassVehicleId" ColumnName="ClassVehicleId" />
-          <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
-          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="InProduction" ColumnName="InProduction" />
           <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="InProduction" ColumnName="InProduction" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+          <ScalarProperty Name="ClassVehicleId" ColumnName="ClassVehicleId" />
+          <ScalarProperty Name="IdVehicle" ColumnName="IdVehicle" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

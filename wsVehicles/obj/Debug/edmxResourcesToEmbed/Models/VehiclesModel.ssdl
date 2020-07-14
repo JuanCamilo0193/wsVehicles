@@ -41,7 +41,7 @@
       <PropertyRef Name="IdVehicle" />
     </Key>
     <Property Name="IdVehicle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ClassVehicleId" Type="int" />
+    <Property Name="ClassVehicleId" Type="int" Nullable="false" />
     <Property Name="ManufacturerId" Type="int" Nullable="false" />
     <Property Name="TypeId" Type="int" Nullable="false" />
     <Property Name="Model" Type="varchar" MaxLength="120" Nullable="false" />
@@ -62,7 +62,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_TB_Vehicles_TB_ClassVehicles">
-    <End Role="TB_ClassVehicles" Type="Self.TB_ClassVehicles" Multiplicity="0..1" />
+    <End Role="TB_ClassVehicles" Type="Self.TB_ClassVehicles" Multiplicity="1" />
     <End Role="TB_Vehicles" Type="Self.TB_Vehicles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TB_ClassVehicles">

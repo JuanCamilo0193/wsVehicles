@@ -86,3 +86,4 @@ C:\Users\JuanC\source\repos\wsVehicles\wsVehicles\obj\Debug\wsVehicles.csproj.Co
 C:\Users\JuanC\source\repos\wsVehicles\wsVehicles\obj\Debug\wsVehicles.csproj.CopyComplete
 C:\Users\JuanC\source\repos\wsVehicles\wsVehicles\obj\Debug\wsVehicles.dll
 C:\Users\JuanC\source\repos\wsVehicles\wsVehicles\obj\Debug\wsVehicles.pdb
+C:\Users\JuanC\source\repos\wsVehicles\wsVehicles\obj\Debug\wsVehicles.csprojAssemblyReference.cache

@@ -9,11 +9,11 @@
         <EntityTypeShape EntityType="BD_VEHICLESModel.TB_Countries" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VEHICLESModel.TB_Manufacturers" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VEHICLESModel.TB_Types" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_VEHICLESModel.TB_Vehicles" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="BD_VEHICLESModel.FK_TB_Vehicles_TB_ClassVehicles" ManuallyRouted="false" />
         <AssociationConnector Association="BD_VEHICLESModel.FK_TB_Manufacturers_TB_Countries" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_VEHICLESModel.FK_TB_Vehicles_TB_Manufacturers" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_VEHICLESModel.FK_TB_Vehicles_TB_Types" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BD_VEHICLESModel.TB_Vehicles" Width="1.5" PointX="5.25" PointY="0.875" />
+        <AssociationConnector Association="BD_VEHICLESModel.FK_TB_Vehicles_TB_ClassVehicles" />
+        <AssociationConnector Association="BD_VEHICLESModel.FK_TB_Vehicles_TB_Manufacturers" />
+        <AssociationConnector Association="BD_VEHICLESModel.FK_TB_Vehicles_TB_Types" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

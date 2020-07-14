@@ -15,7 +15,7 @@ namespace wsVehicles.Models
     public partial class TB_Vehicles
     {
         public int IdVehicle { get; set; }
-        public Nullable<int> ClassVehicleId { get; set; }
+        public int ClassVehicleId { get; set; }
         public int ManufacturerId { get; set; }
         public int TypeId { get; set; }
         public string Model { get; set; }

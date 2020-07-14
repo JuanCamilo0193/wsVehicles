@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BD_VEHICLESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BD_VEHICLESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TB_ClassVehicles">
           <Key>
             <PropertyRef Name="IdClassVehicle" />
@@ -46,7 +46,7 @@
             <PropertyRef Name="IdVehicle" />
           </Key>
           <Property Name="IdVehicle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClassVehicleId" Type="int" />
+          <Property Name="ClassVehicleId" Type="int" Nullable="false" />
           <Property Name="ManufacturerId" Type="int" Nullable="false" />
           <Property Name="TypeId" Type="int" Nullable="false" />
           <Property Name="Model" Type="varchar" MaxLength="120" Nullable="false" />
@@ -67,7 +67,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TB_Vehicles_TB_ClassVehicles">
-          <End Role="TB_ClassVehicles" Type="Self.TB_ClassVehicles" Multiplicity="0..1" />
+          <End Role="TB_ClassVehicles" Type="Self.TB_ClassVehicles" Multiplicity="1" />
           <End Role="TB_Vehicles" Type="Self.TB_Vehicles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TB_ClassVehicles">
@@ -125,8 +125,7 @@
             <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BD_VEHICLESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -137,7 +136,7 @@
           <Property Name="IdClassVehicle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClassVehicle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Active" Type="Boolean" />
-          <NavigationProperty Name="TB_Vehicles" Relationship="Self.FK_TB_Vehicles_TB_ClassVehicles" FromRole="TB_ClassVehicles" ToRole="TB_Vehicles" />
+          <NavigationProperty Name="TB_Vehicles" Relationship="BD_VEHICLESModel.FK_TB_Vehicles_TB_ClassVehicles" FromRole="TB_ClassVehicles" ToRole="TB_Vehicles" />
         </EntityType>
         <EntityType Name="TB_Countries">
           <Key>
@@ -160,7 +159,7 @@
           <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TB_Countries" Relationship="Self.FK_TB_Manufacturers_TB_Countries" FromRole="TB_Manufacturers" ToRole="TB_Countries" />
-          <NavigationProperty Name="TB_Vehicles" Relationship="Self.FK_TB_Vehicles_TB_Manufacturers" FromRole="TB_Manufacturers" ToRole="TB_Vehicles" />
+          <NavigationProperty Name="TB_Vehicles" Relationship="BD_VEHICLESModel.FK_TB_Vehicles_TB_Manufacturers" FromRole="TB_Manufacturers" ToRole="TB_Vehicles" />
         </EntityType>
         <EntityType Name="TB_Types">
           <Key>
@@ -169,36 +168,8 @@
           <Property Name="IdType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="TB_Vehicles" Relationship="Self.FK_TB_Vehicles_TB_Types" FromRole="TB_Types" ToRole="TB_Vehicles" />
+          <NavigationProperty Name="TB_Vehicles" Relationship="BD_VEHICLESModel.FK_TB_Vehicles_TB_Types" FromRole="TB_Types" ToRole="TB_Vehicles" />
         </EntityType>
-        <EntityType Name="TB_Vehicles">
-          <Key>
-            <PropertyRef Name="IdVehicle" />
-          </Key>
-          <Property Name="IdVehicle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClassVehicleId" Type="Int32" />
-          <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
-          <Property Name="TypeId" Type="Int32" Nullable="false" />
-          <Property Name="Model" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Year" Type="Int32" Nullable="false" />
-          <Property Name="InProduction" Type="Boolean" />
-          <Property Name="Active" Type="Boolean" />
-          <NavigationProperty Name="TB_ClassVehicles" Relationship="Self.FK_TB_Vehicles_TB_ClassVehicles" FromRole="TB_Vehicles" ToRole="TB_ClassVehicles" />
-          <NavigationProperty Name="TB_Manufacturers" Relationship="Self.FK_TB_Vehicles_TB_Manufacturers" FromRole="TB_Vehicles" ToRole="TB_Manufacturers" />
-          <NavigationProperty Name="TB_Types" Relationship="Self.FK_TB_Vehicles_TB_Types" FromRole="TB_Vehicles" ToRole="TB_Types" />
-        </EntityType>
-        <Association Name="FK_TB_Vehicles_TB_ClassVehicles">
-          <End Role="TB_ClassVehicles" Type="Self.TB_ClassVehicles" Multiplicity="0..1" />
-          <End Role="TB_Vehicles" Type="Self.TB_Vehicles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TB_ClassVehicles">
-              <PropertyRef Name="IdClassVehicle" />
-            </Principal>
-            <Dependent Role="TB_Vehicles">
-              <PropertyRef Name="ClassVehicleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TB_Manufacturers_TB_Countries">
           <End Role="TB_Countries" Type="Self.TB_Countries" Multiplicity="1" />
           <End Role="TB_Manufacturers" Type="Self.TB_Manufacturers" Multiplicity="*" />
@@ -211,9 +182,60 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="BD_VEHICLESEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_ClassVehicles" EntityType="Self.TB_ClassVehicles" />
+          <EntitySet Name="TB_Countries" EntityType="Self.TB_Countries" />
+          <EntitySet Name="TB_Manufacturers" EntityType="Self.TB_Manufacturers" />
+          <EntitySet Name="TB_Types" EntityType="Self.TB_Types" />
+          <AssociationSet Name="FK_TB_Manufacturers_TB_Countries" Association="Self.FK_TB_Manufacturers_TB_Countries">
+            <End Role="TB_Countries" EntitySet="TB_Countries" />
+            <End Role="TB_Manufacturers" EntitySet="TB_Manufacturers" />
+          </AssociationSet>
+          <EntitySet Name="TB_Vehicles" EntityType="BD_VEHICLESModel.TB_Vehicles" />
+          <AssociationSet Name="FK_TB_Vehicles_TB_ClassVehicles" Association="BD_VEHICLESModel.FK_TB_Vehicles_TB_ClassVehicles">
+            <End Role="TB_ClassVehicles" EntitySet="TB_ClassVehicles" />
+            <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_Vehicles_TB_Manufacturers" Association="BD_VEHICLESModel.FK_TB_Vehicles_TB_Manufacturers">
+            <End Role="TB_Manufacturers" EntitySet="TB_Manufacturers" />
+            <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_Vehicles_TB_Types" Association="BD_VEHICLESModel.FK_TB_Vehicles_TB_Types">
+            <End Role="TB_Types" EntitySet="TB_Types" />
+            <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TB_Vehicles">
+          <Key>
+            <PropertyRef Name="IdVehicle" />
+          </Key>
+          <Property Name="IdVehicle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassVehicleId" Type="Int32" Nullable="false" />
+          <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="InProduction" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="TB_ClassVehicles" Relationship="BD_VEHICLESModel.FK_TB_Vehicles_TB_ClassVehicles" FromRole="TB_Vehicles" ToRole="TB_ClassVehicles" />
+          <NavigationProperty Name="TB_Manufacturers" Relationship="BD_VEHICLESModel.FK_TB_Vehicles_TB_Manufacturers" FromRole="TB_Vehicles" ToRole="TB_Manufacturers" />
+          <NavigationProperty Name="TB_Types" Relationship="BD_VEHICLESModel.FK_TB_Vehicles_TB_Types" FromRole="TB_Vehicles" ToRole="TB_Types" />
+        </EntityType>
+        <Association Name="FK_TB_Vehicles_TB_ClassVehicles">
+          <End Type="BD_VEHICLESModel.TB_ClassVehicles" Role="TB_ClassVehicles" Multiplicity="1" />
+          <End Type="BD_VEHICLESModel.TB_Vehicles" Role="TB_Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_ClassVehicles">
+              <PropertyRef Name="IdClassVehicle" />
+            </Principal>
+            <Dependent Role="TB_Vehicles">
+              <PropertyRef Name="ClassVehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TB_Vehicles_TB_Manufacturers">
-          <End Role="TB_Manufacturers" Type="Self.TB_Manufacturers" Multiplicity="1" />
-          <End Role="TB_Vehicles" Type="Self.TB_Vehicles" Multiplicity="*" />
+          <End Type="BD_VEHICLESModel.TB_Manufacturers" Role="TB_Manufacturers" Multiplicity="1" />
+          <End Type="BD_VEHICLESModel.TB_Vehicles" Role="TB_Vehicles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TB_Manufacturers">
               <PropertyRef Name="IdManufacturer" />
@@ -224,8 +246,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TB_Vehicles_TB_Types">
-          <End Role="TB_Types" Type="Self.TB_Types" Multiplicity="1" />
-          <End Role="TB_Vehicles" Type="Self.TB_Vehicles" Multiplicity="*" />
+          <End Type="BD_VEHICLESModel.TB_Types" Role="TB_Types" Multiplicity="1" />
+          <End Type="BD_VEHICLESModel.TB_Vehicles" Role="TB_Vehicles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TB_Types">
               <PropertyRef Name="IdType" />
@@ -235,29 +257,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BD_VEHICLESEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TB_ClassVehicles" EntityType="Self.TB_ClassVehicles" />
-          <EntitySet Name="TB_Countries" EntityType="Self.TB_Countries" />
-          <EntitySet Name="TB_Manufacturers" EntityType="Self.TB_Manufacturers" />
-          <EntitySet Name="TB_Types" EntityType="Self.TB_Types" />
-          <EntitySet Name="TB_Vehicles" EntityType="Self.TB_Vehicles" />
-          <AssociationSet Name="FK_TB_Vehicles_TB_ClassVehicles" Association="Self.FK_TB_Vehicles_TB_ClassVehicles">
-            <End Role="TB_ClassVehicles" EntitySet="TB_ClassVehicles" />
-            <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TB_Manufacturers_TB_Countries" Association="Self.FK_TB_Manufacturers_TB_Countries">
-            <End Role="TB_Countries" EntitySet="TB_Countries" />
-            <End Role="TB_Manufacturers" EntitySet="TB_Manufacturers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TB_Vehicles_TB_Manufacturers" Association="Self.FK_TB_Vehicles_TB_Manufacturers">
-            <End Role="TB_Manufacturers" EntitySet="TB_Manufacturers" />
-            <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TB_Vehicles_TB_Types" Association="Self.FK_TB_Vehicles_TB_Types">
-            <End Role="TB_Types" EntitySet="TB_Types" />
-            <End Role="TB_Vehicles" EntitySet="TB_Vehicles" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -307,14 +306,14 @@
           <EntitySetMapping Name="TB_Vehicles">
             <EntityTypeMapping TypeName="BD_VEHICLESModel.TB_Vehicles">
               <MappingFragment StoreEntitySet="TB_Vehicles">
-                <ScalarProperty Name="IdVehicle" ColumnName="IdVehicle" />
-                <ScalarProperty Name="ClassVehicleId" ColumnName="ClassVehicleId" />
-                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
-                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="InProduction" ColumnName="InProduction" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="InProduction" ColumnName="InProduction" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+                <ScalarProperty Name="ClassVehicleId" ColumnName="ClassVehicleId" />
+                <ScalarProperty Name="IdVehicle" ColumnName="IdVehicle" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
